@@ -8,26 +8,43 @@ import java.awt.image.BufferedImage;
 // Class ini harus ABSTRACT karena dia cuma cetakan
 public abstract class Entity {
     
-    public GamePanel gp;
+    public GamePanel gp; 
     public int x, y;
     public int speed;
     
+    // --- GAMBAR ANIMASI ---
+    // Gerakan Jalan
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String direction = "down";
+    // Gerakan Serang (Attack) - Saya lengkapi untuk semua arah
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, 
+                         attackLeft1, attackLeft2, attackRight1, attackRight2;
     
+    public String direction = "DOWN";
+    
+    // --- COUNTER & STATUS ANIMASI ---
     public int spriteCounter = 0;
     public int spriteNum = 1;
     
+    // Status Sedang Apa?
+    public boolean collisionOn = false;
+    public boolean isMoving = false;    // Sedang jalan?
+    public boolean isAttacking = false; // Sedang nyerang?
+    
+    // --- COLLISION AREA ---
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collisionOn = false;
     
+    // --- STATUS KARAKTER ---
     public int hp;
     public int maxHp;
     public String name;
-    public int actionLockCounter = 0;
+    
+    // --- AI & LOGIKA LAINNYA ---
+    public int actionLockCounter = 0; // Wajib ada untuk Enemy.java
+    
+    // ------------------------------------------------------------
 
-    // Helper untuk membesarkan gambar
+    // Helper untuk membesarkan gambar (Dipakai oleh Player & Enemy)
     public BufferedImage setup(BufferedImage image, int width, int height) {
         BufferedImage scaledImage = new BufferedImage(width, height, image.getType());
         Graphics2D g2 = scaledImage.createGraphics();
