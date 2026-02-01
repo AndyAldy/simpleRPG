@@ -1,6 +1,6 @@
-package SimpleRPG.entity;
+package entity;
 
-import SimpleRPG.game.GamePanel;
+import game.GamePanel;
 import java.awt.*;
 
 public class Enemy extends Entity {

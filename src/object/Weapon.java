@@ -1,4 +1,4 @@
-package simplerpg.object;
+package object;
 
 import java.awt.Rectangle;
 
