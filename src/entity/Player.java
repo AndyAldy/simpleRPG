@@ -16,7 +16,7 @@ public class Player extends Entity {
         this.gp = gp;
         this.keyH = keyH;
         
-        // HITBOX: Sesuaikan area sensitif tabrakan (biar kepala tidak nyangkut tembok)
+        // Atur area hitbox agar pas di kaki (biar kepala tidak nyangkut tembok)
         solidArea = new Rectangle(8, 16, 32, 32); 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -34,42 +34,30 @@ public class Player extends Entity {
         hp = maxHp;
     }
     
-public void getPlayerImage() {
+    public void getPlayerImage() {
         try {
-            // 1. Load gambar barumu (Pastikan nama file sama persis)
-            BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/res/Player-1.png"));
+            // Load Gambar
+            BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/res/Player.png"));
             
-            // 2. Tentukan ukuran satu kotak karakter (Ukur pixelnya!)
-            // Saya tebak ini 16x16 atau 32x32. Coba 16 dulu, kalau kekecilan ganti 32.
-            int frameWidth = 16; 
-            int frameHeight = 16; 
+            // Ukuran sprite asli (sesuaikan dengan gambar kamu, misal 16x16)
+            int w = 16; 
+            int h = 16;
             
-            // 3. Ambil gambar dari baris paling atas (y = 0)
+            // Memotong gambar
+            down1 = setup(spriteSheet.getSubimage(0, 0, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
+            down2 = setup(spriteSheet.getSubimage(w, 0, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
             
-            // -- Animasi 1 (Kaki Kiri) --
-            // Mengambil frame ke-1 (x = 0)
-            BufferedImage img1 = setup(spriteSheet.getSubimage(0, 0, frameWidth, frameHeight), gp.TILE_SIZE, gp.TILE_SIZE);
+            left1 = setup(spriteSheet.getSubimage(0, h, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
+            left2 = setup(spriteSheet.getSubimage(w, h, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
             
-            // -- Animasi 2 (Kaki Kanan) --
-            // Mengambil frame ke-2 (x = frameWidth) -> Geser ke kanan satu kotak
-            BufferedImage img2 = setup(spriteSheet.getSubimage(frameWidth, 0, frameWidth, frameHeight), gp.TILE_SIZE, gp.TILE_SIZE);
+            right1 = setup(spriteSheet.getSubimage(0, h*2, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
+            right2 = setup(spriteSheet.getSubimage(w, h*2, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
             
-            // 4. Aplikasikan ke semua arah (Karena gambarnya cuma punya hadap kanan)
-            up1 = img1; 
-            up2 = img2;
-            
-            down1 = img1; 
-            down2 = img2;
-            
-            left1 = img1; 
-            left2 = img2;
-            
-            right1 = img1; 
-            right2 = img2;
+            up1 = setup(spriteSheet.getSubimage(0, h*3, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
+            up2 = setup(spriteSheet.getSubimage(w, h*3, w, h), gp.TILE_SIZE, gp.TILE_SIZE);
             
         } catch(Exception e) {
-            System.out.println("Gagal load gambar! Cek nama file /res/Player-1.png");
-            e.printStackTrace();
+            System.out.println("Error Player Image: " + e.getMessage());
         }
     }
 
@@ -86,7 +74,6 @@ public void getPlayerImage() {
             collisionOn = false;
             gp.cChecker.checkTile(this);
             
-            // Jika tidak nabrak, gerak
             if(!collisionOn) {
                 switch(direction) {
                     case "up": y -= speed; break;
@@ -96,9 +83,8 @@ public void getPlayerImage() {
                 }
             }
             
-            // Animasi Jalan
             spriteCounter++;
-            if(spriteCounter > 12) { // Ganti gambar setiap 12 frame
+            if(spriteCounter > 12) {
                 if(spriteNum == 1) spriteNum = 2;
                 else if(spriteNum == 2) spriteNum = 1;
                 spriteCounter = 0;
@@ -116,8 +102,7 @@ public void getPlayerImage() {
             case "right": image = (spriteNum == 1) ? right1 : right2; break;
         }
         
-        if(image != null) 
-            g2.drawImage(image, x, y, null);
+        if(image != null) g2.drawImage(image, x, y, null);
         else {
             g2.setColor(Color.BLUE);
             g2.fillRect(x, y, gp.TILE_SIZE, gp.TILE_SIZE);

@@ -5,34 +5,29 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+// Class ini harus ABSTRACT karena dia cuma cetakan
 public abstract class Entity {
     
     public GamePanel gp;
     public int x, y;
     public int speed;
     
-    // --- GAMBAR ANIMASI ---
-    // Menyimpan 2 frame untuk setiap arah (Kaki kiri & kanan)
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String direction = "down"; // Arah default
+    public String direction = "down";
     
     public int spriteCounter = 0;
-    public int spriteNum = 1; // 1 atau 2 (untuk ganti-ganti kaki)
+    public int spriteNum = 1;
     
-    // --- COLLISION (TABRAKAN) ---
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     
-    // --- STATUS ---
     public int hp;
     public int maxHp;
     public String name;
-    public boolean invincible = false;
-    public int actionLockCounter = 0; // Untuk delay AI musuh
+    public int actionLockCounter = 0;
 
-    // --- UTILITY: SETUP GAMBAR ---
-    // Method ini akan membesarkan gambar kecil (pixel art) ke ukuran game (48x48)
+    // Helper untuk membesarkan gambar
     public BufferedImage setup(BufferedImage image, int width, int height) {
         BufferedImage scaledImage = new BufferedImage(width, height, image.getType());
         Graphics2D g2 = scaledImage.createGraphics();
