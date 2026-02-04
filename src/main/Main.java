@@ -1,7 +1,7 @@
-package simplerpg.main;
+package main;
 
 import javax.swing.JFrame;
-import SimpleRPG.game.GamePanel;
+import game.GamePanel;
 
 public class Main {
     public static void main(String[] args) {
