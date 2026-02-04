@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/game/KeyHandler.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/object/Weapon.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/entity/Entity.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/entity/Player.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/entity/Enemy.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/game/GamePanel.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/main/Main.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/game/CollisionChecker.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/Tile/Tile.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/Tile/TileManager.java</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/res/Orc-Attack01.png</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/res/Orc.png</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/res/Enemies.png</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/res/tiles.png</file>
+            <file>file:/D:/Netbeans%20Project/GameTangkap/src/res/Player.png</file>
+        </group>
+    </open-files>
+</project-private>
